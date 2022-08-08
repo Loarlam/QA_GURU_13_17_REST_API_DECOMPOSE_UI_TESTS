@@ -16,7 +16,8 @@ def junitVersion = '5.9.0',
     fakerVersion = '1.0.2',
     orgJsonVersion = '20220320',
     selenideVersion = '6.6.6',
-    allureVersion = '2.18.1'
+    allureVersion = '2.18.1',
+    aeonbitsVersion = '1.0.12'
 
 allure {
     report {
@@ -40,7 +41,8 @@ dependencies
                     "org.json:json:$orgJsonVersion",
                     "com.codeborne:selenide:$selenideVersion",
                     "io.qameta.allure:allure-selenide:$allureVersion",
-                    "io.qameta.allure:allure-rest-assured:$allureVersion")
+                    "io.qameta.allure:allure-rest-assured:$allureVersion",
+                    "org.aeonbits.owner:owner:$aeonbitsVersion")
             testRuntimeOnly("org.slf4j:slf4j-simple:$slf4jVersion")
         }
 
@@ -57,5 +59,12 @@ tasks.withType(Test) {
             events "started", "skipped", "failed", "standard_error", "standard_out"
             exceptionFormat "short"
         }
+    }
+}
+
+task taskWithTagDemoWebShop(type: Test) {
+    systemProperties(System.getProperties())
+    useJUnitPlatform {
+        includeTags "demoWebShop"
     }
 }
