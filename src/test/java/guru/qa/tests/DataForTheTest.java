@@ -2,6 +2,7 @@ package guru.qa.tests;
 
 import com.github.javafaker.Faker;
 import guru.qa.enumvalues.Genders;
+import org.json.JSONObject;
 
 import java.util.Locale;
 import java.util.Random;
@@ -22,5 +23,10 @@ public class DataForTheTest {
             firstNameForEdit = fakerData.funnyName().name(),
             lastNameForEdit = fakerData.name().lastName(),
             emailForEdit = fakerData.internet().safeEmailAddress(),
-            resultOfRegistration = "Your registration completed";
+            resultOfRegistration = "Your registration completed",
+            cookieNameForAuth = "NOPCOMMERCE.AUTH";
+
+    JSONObject jsonBodyToAuth = new JSONObject()
+            .put("Email", EMAIL_FOR_REGISTRATION)
+            .put("Password", PASSWORD_FOR_REGISTRATION);
 }

@@ -1,13 +1,13 @@
 package guru.qa.tests;
 
 import static guru.qa.helpers.CustomApiListener.withCustomTemplates;
+
 import io.qameta.allure.*;
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.Cookie;
 
 
 public class PersonalDataRegistrationFormTest extends BaseTest {
-    DataForTheTest dataForTheTest;
-
     @Test
     @Tag("demoWebShop")
     @Owner("Loarlam")
@@ -57,5 +57,8 @@ public class PersonalDataRegistrationFormTest extends BaseTest {
                 .settingConfirmPassword(dataForTheTest.PASSWORD_FOR_REGISTRATION)
                 .clickingOnRegisterButton()
                 .checkingResultOfRegistration(dataForTheTest.resultOfRegistration);
+
+        Cookie cookie = pageOfRegistrationForm.takingCookieValue(dataForTheTest.cookieNameForAuth);
+
     }
 }

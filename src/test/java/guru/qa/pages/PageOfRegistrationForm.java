@@ -2,10 +2,13 @@ package guru.qa.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import org.openqa.selenium.Cookie;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static guru.qa.helpers.CustomApiListener.withCustomTemplates;
+import static io.restassured.RestAssured.given;
 
 public class PageOfRegistrationForm {
     private SelenideElement name = $("#FirstName"),
@@ -68,6 +71,22 @@ public class PageOfRegistrationForm {
     public PageOfRegistrationForm clickingOnRegisterButton() {
         registerButton.click();
         return this;
+    }
+
+    @Step("Получаем куки после регистрации на сайте")
+    public Cookie takingCookieValue(String cookieNameForAuth) {
+        String cookieName = cookieNameForAuth;
+        String cookieValue = given()
+                .filter(withCustomTemplates())
+                .log().all()
+                .when()
+                .get("")
+                .then()
+                .log().all()
+                .statusCode(200)
+                .extract()
+                .cookie(cookieName);
+        return new Cookie(cookieName, cookieValue);
     }
 
     @Step("Проверяем наличие \"{expectedText}\" в результатах общего вывода")

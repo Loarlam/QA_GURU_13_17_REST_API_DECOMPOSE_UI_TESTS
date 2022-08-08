@@ -13,6 +13,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class BaseTest {
     PageOfRegistrationForm pageOfRegistrationForm = new PageOfRegistrationForm();
+    DataForTheTest dataForTheTest;
     static CredentialsConfig credentialsConfig = ConfigFactory.create(CredentialsConfig.class);
 
     @BeforeAll
