@@ -13,7 +13,7 @@ public class PageOfRegistrationForm {
             email = $("#Email"),
             password = $("#Password"),
             confirmPassword = $("#ConfirmPassword"),
-            registerButton = $("register-button"),
+            registerButton = $("#register-button"),
             resultValue = $(".result");
 
     @Step("Открываем минимальный элемент на странице для проверки работоспособности сайта")
@@ -46,21 +46,21 @@ public class PageOfRegistrationForm {
         return this;
     }
 
-    @Step("Вводим \"{userEmail}\" в поле \"Email\"")
+    @Step("Вводим email в поле \"Email\"")
     public PageOfRegistrationForm settingEmail(String userEmail) {
         email.setValue(userEmail);
         return this;
     }
 
-    @Step("Вводим \"{userPassword}\" в поле \"Password\"")
+    @Step("Вводим пароль в поле \"Password\"")
     public PageOfRegistrationForm settingPassword(String userPassword) {
         password.setValue(userPassword);
         return this;
     }
 
-    @Step("Вводим \"{confirmPassword}\" в поле \"Confirm password\"")
-    public PageOfRegistrationForm settingConfirmPassword(String confirmPassword) {
-        password.setValue(confirmPassword);
+    @Step("Вводим повторно пароль в поле \"Confirm password\"")
+    public PageOfRegistrationForm settingConfirmPassword(String userConfirmPassword) {
+        confirmPassword.setValue(userConfirmPassword);
         return this;
     }
 
