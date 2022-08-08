@@ -12,16 +12,15 @@ public class DataForTheTest {
 
     int userGenderDigit = random.nextInt(Genders.values().length) + 1;
 
-    final String DEFAULT_GENDER = Genders.values()[userGenderDigit - 1].getName(),
-            DEFAULT_FIRST_NAME = fakerData.funnyName().name(),
-            DEFAULT_LAST_NAME = fakerData.name().lastName(),
-            DEFAULT_EMAIL = fakerData.internet().emailAddress(),
-            DEFAULT_PASSWORD = fakerData.internet().password();
+    final String GENDER_FOR_REGISTRATION = Genders.values()[userGenderDigit - 1].getName(),
+            FIRST_NAME_FOR_REGISTRATION = fakerData.funnyName().name(),
+            LAST_NAME_FOR_REGISTRATION = fakerData.name().lastName(),
+            EMAIL_FOR_REGISTRATION = fakerData.internet().emailAddress(),
+            PASSWORD_FOR_REGISTRATION = fakerData.internet().password();
 
-    String userFirstName = fakerData.funnyName().name(),
-            userLastName = fakerData.name().lastName(),
-            userEmail = fakerData.internet().safeEmailAddress(),
-            userPassword = fakerData.internet().password(),
-            userGenderName = Genders.values()[userGenderDigit - 1].getName(),
+    String genderForEdit = Genders.values()[userGenderDigit - 1].getName(),
+            firstNameForEdit = fakerData.funnyName().name(),
+            lastNameForEdit = fakerData.name().lastName(),
+            emailForEdit = fakerData.internet().safeEmailAddress(),
             resultOfRegistration = "Your registration completed";
 }
