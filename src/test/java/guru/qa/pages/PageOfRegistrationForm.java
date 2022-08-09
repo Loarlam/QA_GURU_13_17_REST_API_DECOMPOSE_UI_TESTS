@@ -33,9 +33,9 @@ public class PageOfRegistrationForm {
 
     @Step("Открываем страницу для проверки регистрации")
     public PageOfRegistrationForm openingWebsiteAfterRegisterPage(String cookieName, String cookieValue) {
-        Cookie authCookie = new Cookie(cookieName, cookieValue);
-        getWebDriver().manage().addCookie(authCookie);
         open("/registerresult/1");
+        Cookie cookieForAuth = new Cookie(cookieName, cookieValue);
+        getWebDriver().manage().addCookie(cookieForAuth);
         return this;
     }
 
