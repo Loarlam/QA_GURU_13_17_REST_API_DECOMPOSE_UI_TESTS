@@ -60,6 +60,7 @@ public class DemoWebShopTests extends BaseTest {
                 .formParam("Email", dataForTheTest.EMAIL_FOR_REGISTRATION)
                 .formParam("Password", dataForTheTest.PASSWORD_FOR_REGISTRATION)
                 .formParam("ConfirmPassword", dataForTheTest.PASSWORD_FOR_REGISTRATION)
+                .formParam("register-button", dataForTheTest.BUTTON_FOR_REGISTRATION)
                 .log().all()
                 .when()
                 .post("/register")
