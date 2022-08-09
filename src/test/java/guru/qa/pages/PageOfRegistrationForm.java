@@ -96,7 +96,7 @@ public class PageOfRegistrationForm {
 
     @Step("Проверяем наличие \"{expectedText}\" в результатах общего вывода")
     public PageOfRegistrationForm checkingResultOfChangeData(String expectedText) {
-        name.shouldHave(attribute("value", expectedText));
+        email.shouldHave(attribute("value", expectedText));
         return this;
     }
 }
