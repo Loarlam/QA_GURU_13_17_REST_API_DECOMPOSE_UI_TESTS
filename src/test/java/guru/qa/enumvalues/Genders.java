@@ -1,8 +1,8 @@
 package guru.qa.enumvalues;
 
 public enum Genders {
-    MALE("M"),
-    FEMALE("F");
+    MALE("male"),
+    FEMALE("female");
 
     private String name;
 
