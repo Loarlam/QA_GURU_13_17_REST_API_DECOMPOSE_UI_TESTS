@@ -47,13 +47,13 @@ public class PageOfRegistrationForm {
         return this;
     }
 
-    @Step("Вводим email в поле \"Email\"")
+    @Step("Вводим \"{userEmail}\" в поле \"Email\"")
     public PageOfRegistrationForm settingEmail(String userEmail) {
         email.setValue(userEmail);
         return this;
     }
 
-    @Step("Вводим пароль в поле \"Password\"")
+    @Step("Вводим \"{userPassword}\" в поле \"Password\"")
     public PageOfRegistrationForm settingPassword(String userPassword) {
         password.setValue(userPassword);
         return this;

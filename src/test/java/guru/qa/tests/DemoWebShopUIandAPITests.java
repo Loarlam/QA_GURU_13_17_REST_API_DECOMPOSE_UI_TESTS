@@ -65,12 +65,14 @@ public class DemoWebShopUIandAPITests extends BaseTest {
         pageOfRegistrationForm.openingWebsiteAfterRegisterPage()
                 .checkingResultOfRegistration(dataForTheTest.resultOfRegistration);
 
-        given()
+        /*given()
                 .filter(withCustomTemplates())
                 .cookie("__RequestVerificationToken", credentialsConfig.cookieForHeaderRegistration())
                 .when()
                 .get("/logout")
                 .then()
-                .statusCode(302);
+                .statusCode(302);*/
+
+
     }
 }
