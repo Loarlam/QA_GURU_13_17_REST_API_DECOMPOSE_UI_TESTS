@@ -4,7 +4,6 @@ import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.Cookie;
 
 import static guru.qa.helpers.CustomApiListener.withCustomTemplates;
 import static io.restassured.RestAssured.given;
@@ -80,7 +79,7 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 .then()
                 .statusCode(302);
 
-        pageOfRegistrationForm.openingMinimalContentInSite()
+        pageOfCustomerInfo.openingMinimalContentInSite()
                 .openingWebsiteAfterChangeData("NOPCOMMERCE.AUTH", cookieValueForAuth)
                 .checkingResultOfChangeData(dataForTheTest.emailForEdit);
     }

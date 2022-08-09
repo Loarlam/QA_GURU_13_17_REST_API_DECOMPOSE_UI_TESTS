@@ -39,13 +39,6 @@ public class PageOfRegistrationForm {
         return this;
     }
 
-    @Step("Открываем страницу для проверки смены данных")
-    public PageOfRegistrationForm openingWebsiteAfterChangeData(String cookieName, String cookieValue) {
-        getWebDriver().manage().addCookie(new Cookie(cookieName, cookieValue));
-        open("/customer/info");
-        return this;
-    }
-
     @Step("Вводим \"{userName}\" в поле \"First name\"")
     public PageOfRegistrationForm settingFirstName(String userName) {
         name.setValue(userName);
@@ -91,12 +84,6 @@ public class PageOfRegistrationForm {
     @Step("Клик по кнопке \"Log out\"")
     public PageOfRegistrationForm clickingOnLogoutButton() {
         logoutButton.click();
-        return this;
-    }
-
-    @Step("Проверяем наличие \"{expectedText}\" в результатах общего вывода")
-    public PageOfRegistrationForm checkingResultOfChangeData(String expectedText) {
-        email.shouldHave(attribute("value", expectedText));
         return this;
     }
 }
