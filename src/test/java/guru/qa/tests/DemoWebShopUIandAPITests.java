@@ -1,5 +1,6 @@
 package guru.qa.tests;
 
+import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -68,19 +69,10 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 .checkingResultOfRegistration(dataForTheTest.resultOfRegistration)
                 .clickingOnLogoutButton();
 
-        String cookieValueForChangeData = given()
-                .filter(withCustomTemplates())
-                .formParam("Email", dataForTheTest.emailForRegistration)
-                .formParam("Password", dataForTheTest.passwordForRegistration)
-                .when()
-                .post("/login")
-                .then()
-                .statusCode(302)
-                .extract().cookie("NOPCOMMERCE.AUTH");
 
         given()
                 .filter(withCustomTemplates())
-                .cookie("NOPCOMMERCE.AUTH", cookieValueForChangeData)
+                .cookie("NOPCOMMERCE.AUTH", cookieValueForRegister)
                 .cookie("__RequestVerificationToken", credentialsConfig.cookieForHeaderChangeData())
                 .formParam("__RequestVerificationToken", credentialsConfig.cookieForBodyChangeData())
                 .formParam("Email", dataForTheTest.emailForEdit)
@@ -91,7 +83,7 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 .statusCode(302);
 
         pageOfCustomerInfo.openingMinimalContentInSite()
-                .openingWebsiteAfterChangeData("NOPCOMMERCE.AUTH", cookieValueForChangeData)
+                .openingWebsiteAfterChangeData("NOPCOMMERCE.AUTH", cookieValueForRegister)
                 .checkingResultOfChangeData(dataForTheTest.emailForEdit);
     }
 }
