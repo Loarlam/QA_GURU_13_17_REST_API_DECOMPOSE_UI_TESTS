@@ -52,8 +52,8 @@ public class DemoWebShopTests extends BaseTest {
 
         given()
                 .filter(withCustomTemplates())
-                .cookie("__RequestVerificationToken", DataForTheTest.cookiesConfig.cookieForHeaderRegistration())
-                .formParam("__RequestVerificationToken", DataForTheTest.cookiesConfig.cookieForBodyRegistration())
+                .cookie("__RequestVerificationToken", credentialsConfig.cookieForHeaderRegistration())
+                .formParam("__RequestVerificationToken", credentialsConfig.cookieForBodyRegistration())
                 .formParam("FirstName", dataForTheTest.FIRST_NAME_FOR_REGISTRATION)
                 .formParam("LastName", dataForTheTest.LAST_NAME_FOR_REGISTRATION)
                 .formParam("Email", dataForTheTest.EMAIL_FOR_REGISTRATION)

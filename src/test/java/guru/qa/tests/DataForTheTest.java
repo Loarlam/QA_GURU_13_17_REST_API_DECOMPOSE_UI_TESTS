@@ -1,7 +1,6 @@
 package guru.qa.tests;
 
 import com.github.javafaker.Faker;
-import guru.qa.config.CookiesConfig;
 import guru.qa.enumvalues.Genders;
 import org.aeonbits.owner.ConfigFactory;
 import org.json.JSONObject;
@@ -10,7 +9,6 @@ import java.util.Locale;
 import java.util.Random;
 
 public class DataForTheTest {
-    static CookiesConfig cookiesConfig = ConfigFactory.create(CookiesConfig.class);
     Faker fakerData = new Faker(Locale.FRANCE);
     Random random = new Random();
 

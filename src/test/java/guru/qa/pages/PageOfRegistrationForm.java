@@ -2,13 +2,10 @@ package guru.qa.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import org.openqa.selenium.Cookie;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static guru.qa.helpers.CustomApiListener.withCustomTemplates;
-import static io.restassured.RestAssured.given;
 
 public class PageOfRegistrationForm {
     private SelenideElement name = $("#FirstName"),
