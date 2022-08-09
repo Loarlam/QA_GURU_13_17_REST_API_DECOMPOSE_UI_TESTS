@@ -45,7 +45,6 @@ public class DemoWebShopTests extends BaseTest {
             "при отработке которого формируется отчёт в Allure Report")
     @Description("Методика запуска процесса регистрации, авторизации и смены данных пользователя посредством подтягивания кода из github в Jenkins, " +
             "с выводом отчёта Allure, позволяет решить проблему привязки к локальной машине (API)")
-    @Link(name = "DemoWebShop", url = "http://demowebshop.tricentis.com")
     @Step("Прохождение регистрации на сайте")
     @DisplayName("Регистрация, авторизация и смена данных пользователя на сайте demowebshop.tricentis.com с последующей проверкой результата регистрации (API)")
     void registrationAndAuthOnSiteWithCheckingResult() {
