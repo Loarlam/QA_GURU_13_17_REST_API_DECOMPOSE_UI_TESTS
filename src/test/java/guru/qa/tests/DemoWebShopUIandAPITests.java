@@ -64,8 +64,8 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 .log().all()
                 .statusCode(302);
 
-        pageOfRegistrationForm.openingWebsiteAfterRegisterPage()
-                .checkingResultOfRegistration(dataForTheTest.resultOfRegistration);
+        pageOfRegistrationForm.openingWebsiteAfterRegisterPage();
+
 
         /*given()
                 .filter(withCustomTemplates())

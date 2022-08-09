@@ -31,7 +31,7 @@ public class PageOfRegistrationForm {
 
     @Step("Открываем страницу для проверки регистрации")
     public PageOfRegistrationForm openingWebsiteAfterRegisterPage() {
-        open("/registerresult/1");
+        open("/customer/info");
         return this;
     }
 
