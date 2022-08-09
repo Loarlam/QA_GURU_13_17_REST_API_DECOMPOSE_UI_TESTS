@@ -21,7 +21,7 @@ public class PageOfRegistrationForm {
 
     @Step("Открываем минимальный элемент на странице для проверки работоспособности сайта")
     public PageOfRegistrationForm openingMinimalContentInSite() {
-        open("Themes/DefaultClean/Content/images/top-menu-triangle.png");
+        open("/Themes/DefaultClean/Content/images/top-menu-triangle.png");
         return this;
     }
 
