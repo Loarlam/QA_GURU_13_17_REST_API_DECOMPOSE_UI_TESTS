@@ -60,6 +60,7 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 .when()
                 .post("/register")
                 .then()
+                .log().all()
                 .statusCode(302);
 
         pageOfRegistrationForm.openingWebsiteAfterRegisterPage()
