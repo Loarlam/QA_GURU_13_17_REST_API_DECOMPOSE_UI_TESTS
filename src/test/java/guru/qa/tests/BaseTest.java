@@ -1,6 +1,7 @@
 package guru.qa.tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import guru.qa.attachments.AttachmentsForReport;
 import guru.qa.config.CredentialsConfig;

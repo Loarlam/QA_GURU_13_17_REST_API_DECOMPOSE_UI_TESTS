@@ -50,7 +50,7 @@ public class DemoWebShopTests extends BaseTest {
     void registrationAndAuthOnSiteWithCheckingResult() {
         dataForTheTest = new DataForTheTest();
 
-        given()
+        /*given()
                 .filter(withCustomTemplates())
                 .cookie("__RequestVerificationToken", credentialsConfig.cookieForHeaderRegistration())
                 .formParam("__RequestVerificationToken", credentialsConfig.cookieForBodyRegistration())
@@ -61,6 +61,22 @@ public class DemoWebShopTests extends BaseTest {
                 .formParam("Password", dataForTheTest.PASSWORD_FOR_REGISTRATION)
                 .formParam("ConfirmPassword", dataForTheTest.PASSWORD_FOR_REGISTRATION)
                 .formParam("register-button", dataForTheTest.BUTTON_FOR_REGISTRATION)
+                .log().all()
+                .when()
+                .post("/register")
+                .then()
+                .log().all()
+                .statusCode(302);*/
+
+        given()
+                .filter(withCustomTemplates())
+                .cookie("__RequestVerificationToken", credentialsConfig.cookieForHeaderRegistration())
+                .formParam("__RequestVerificationToken", credentialsConfig.cookieForBodyRegistration())
+                .formParam("FirstName", dataForTheTest.FIRST_NAME_FOR_REGISTRATION)
+                .formParam("LastName", dataForTheTest.LAST_NAME_FOR_REGISTRATION)
+                .formParam("Email", dataForTheTest.EMAIL_FOR_REGISTRATION)
+                .formParam("Password", dataForTheTest.PASSWORD_FOR_REGISTRATION)
+                .formParam("ConfirmPassword", dataForTheTest.PASSWORD_FOR_REGISTRATION)
                 .log().all()
                 .when()
                 .post("/register")

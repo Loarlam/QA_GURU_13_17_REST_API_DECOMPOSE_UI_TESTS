@@ -19,7 +19,8 @@ public class DataForTheTest {
             LAST_NAME_FOR_REGISTRATION = fakerData.name().lastName(),
             EMAIL_FOR_REGISTRATION = fakerData.internet().emailAddress(),
             PASSWORD_FOR_REGISTRATION = fakerData.internet().password(),
-            BUTTON_FOR_REGISTRATION = "Register";
+            BUTTON_FOR_REGISTRATION = "Register",
+            endPoint = "/register";
 
     String genderForEdit = Genders.values()[userGenderDigit - 1].getName(),
             firstNameForEdit = fakerData.funnyName().name(),
