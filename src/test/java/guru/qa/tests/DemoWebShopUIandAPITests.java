@@ -69,12 +69,23 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 .checkingResultOfRegistration(dataForTheTest.resultOfRegistration)
                 .clickingOnLogoutButton();
 
+        String cookieValueForChangeData = given()
+                .filter(withCustomTemplates())
+                .formParam("Email", dataForTheTest.emailForRegistration)
+                .formParam("Password", dataForTheTest.passwordForRegistration)
+                .when()
+                .post("/login")
+                .then()
+                .statusCode(302)
+                .extract().cookie("NOPCOMMERCE.AUTH");
 
         given()
                 .filter(withCustomTemplates())
-                .cookie("NOPCOMMERCE.AUTH", cookieValueForRegister)
+                .cookie("NOPCOMMERCE.AUTH", cookieValueForChangeData)
                 .cookie("__RequestVerificationToken", credentialsConfig.cookieForHeaderChangeData())
                 .formParam("__RequestVerificationToken", credentialsConfig.cookieForBodyChangeData())
+                .formParam("FirstName", dataForTheTest.firstNameForRegistration)
+                .formParam("LastName", dataForTheTest.lastNameForRegistration)
                 .formParam("Email", dataForTheTest.emailForEdit)
                 .formParam("save-info-button", dataForTheTest.buttonForChangeData)
                 .when()
@@ -83,7 +94,7 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 .statusCode(302);
 
         pageOfCustomerInfo.openingMinimalContentInSite()
-                .openingWebsiteAfterChangeData("NOPCOMMERCE.AUTH", cookieValueForRegister)
+                .openingWebsiteAfterChangeData("NOPCOMMERCE.AUTH", cookieValueForChangeData)
                 .checkingResultOfChangeData(dataForTheTest.emailForEdit);
     }
 }
