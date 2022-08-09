@@ -68,10 +68,8 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 .extract()
                 .cookie(dataForTheTest.cookieNameForAuth);
 
-        getWebDriver().manage().addCookie(new Cookie(dataForTheTest.cookieNameForAuth, cookieValueForAuth));
-
         pageOfRegistrationForm.openingMinimalContentInSite()
-                .openingWebsiteAfterRegisterPage()
+                .openingWebsiteAfterRegisterPage(dataForTheTest.cookieNameForAuth, cookieValueForAuth)
                 .checkingResultOfRegistration(dataForTheTest.resultOfRegistration);
 
         /*given()
