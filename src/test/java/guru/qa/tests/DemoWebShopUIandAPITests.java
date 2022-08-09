@@ -59,11 +59,9 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 .formParam("Password", dataForTheTest.PASSWORD_FOR_REGISTRATION)
                 .formParam("ConfirmPassword", dataForTheTest.PASSWORD_FOR_REGISTRATION)
                 .formParam("register-button", dataForTheTest.BUTTON_FOR_REGISTRATION)
-                .log().all()
                 .when()
                 .post("/register")
                 .then()
-                .log().all()
                 .statusCode(302)
                 .extract()
                 .cookie(dataForTheTest.cookieNameForAuth);
@@ -72,12 +70,13 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 .openingWebsiteAfterRegisterPage(dataForTheTest.cookieNameForAuth, cookieValueForAuth)
                 .checkingResultOfRegistration(dataForTheTest.resultOfRegistration);
 
-        /*given()
+        given()
                 .filter(withCustomTemplates())
                 .cookie("__RequestVerificationToken", credentialsConfig.cookieForHeaderRegistration())
                 .when()
                 .get("/logout")
                 .then()
-                .statusCode(302);*/
+                .log().all()
+                .statusCode(302);
     }
 }
