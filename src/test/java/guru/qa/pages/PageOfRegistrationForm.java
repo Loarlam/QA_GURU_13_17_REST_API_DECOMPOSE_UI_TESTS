@@ -28,6 +28,12 @@ public class PageOfRegistrationForm {
         return this;
     }
 
+    @Step("Открываем страницу с полями для ввода данных и убираем рекламу")
+    public PageOfRegistrationForm openingWebsiteAfterRegisterPage() {
+        open("/registerresult/1");
+        return this;
+    }
+
     @Step("Выбираем \"{userGender}\" близ \"Gender\"")
     public PageOfRegistrationForm settingGender(String userGender) {
         $(String.format("#gender-%s", userGender)).sendKeys(" ");

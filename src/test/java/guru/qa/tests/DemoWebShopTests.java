@@ -67,6 +67,6 @@ public class DemoWebShopTests extends BaseTest {
                 .log().all()
                 .statusCode(302);
 
-        pageOfRegistrationForm.openingMinimalContentInSite();
+        pageOfRegistrationForm.openingWebsiteAfterRegisterPage();
     }
 }
