@@ -29,8 +29,7 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 .settingPassword(dataForTheTest.passwordForRegistration)
                 .settingConfirmPassword(dataForTheTest.passwordForRegistration)
                 .clickingOnRegisterButton()
-                .checkingResultOfRegistration(dataForTheTest.resultOfRegistration)
-                .clickingOnLogoutButton();
+                .checkingResultOfRegistration(dataForTheTest.resultOfRegistration);
     }
 
     @Test
@@ -46,7 +45,7 @@ public class DemoWebShopUIandAPITests extends BaseTest {
     void registeringAndChangedAPIandUI() {
         dataForTheTest = new DataForTheTest();
 
-        String cookieValueForAuth = given()
+        String cookieValueForRegister = given()
                 .filter(withCustomTemplates())
                 .cookie("__RequestVerificationToken", credentialsConfig.cookieForHeaderRegistration())
                 .formParam("__RequestVerificationToken", credentialsConfig.cookieForBodyRegistration())
@@ -65,14 +64,25 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 .cookie("NOPCOMMERCE.AUTH");
 
         pageOfRegistrationForm.openingMinimalContentInSite()
-                .openingWebsiteAfterRegisterPage("NOPCOMMERCE.AUTH", cookieValueForAuth)
-                .checkingResultOfRegistration(dataForTheTest.resultOfRegistration);
+                .openingWebsiteAfterRegisterPage("NOPCOMMERCE.AUTH", cookieValueForRegister)
+                .checkingResultOfRegistration(dataForTheTest.resultOfRegistration)
+                .clickingOnLogoutButton();
+
+        String cookieValueForChangeData = given()
+                .filter(withCustomTemplates())
+                .formParam("Email", dataForTheTest.emailForRegistration)
+                .formParam("Password", dataForTheTest.passwordForRegistration)
+                .when()
+                .post("/login")
+                .then()
+                .statusCode(302)
+                .extract().cookie("NOPCOMMERCE.AUTH");
 
         given()
                 .filter(withCustomTemplates())
-                .cookie("NOPCOMMERCE.AUTH", cookieValueForAuth)
-                .cookie("__RequestVerificationToken", credentialsConfig.cookieForHeaderRegistration())
-                .formParam("__RequestVerificationToken", credentialsConfig.cookieForBodyRegistration())
+                .cookie("NOPCOMMERCE.AUTH", cookieValueForChangeData)
+                .cookie("__RequestVerificationToken", credentialsConfig.cookieForHeaderChangeData())
+                .formParam("__RequestVerificationToken", credentialsConfig.cookieForBodyChangeData())
                 .formParam("Email", dataForTheTest.emailForEdit)
                 .when()
                 .post("/customer/info")
@@ -80,7 +90,7 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 .statusCode(302);
 
         pageOfCustomerInfo.openingMinimalContentInSite()
-                .openingWebsiteAfterChangeData("NOPCOMMERCE.AUTH", cookieValueForAuth)
+                .openingWebsiteAfterChangeData("NOPCOMMERCE.AUTH", cookieValueForChangeData)
                 .checkingResultOfChangeData(dataForTheTest.emailForEdit);
     }
 }

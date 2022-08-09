@@ -8,5 +8,7 @@ public interface CredentialsConfig extends Config {
     String password();
     String cookieForHeaderRegistration();
     String cookieForBodyRegistration();
+    String cookieForHeaderChangeData();
+    String cookieForBodyChangeData();
 //    String remoteLink();
 }
