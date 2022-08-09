@@ -53,6 +53,7 @@ public class DemoWebShopTests extends BaseTest {
         given()
                 .filter(withCustomTemplates())
                 .cookie("__RequestVerificationToken", credentialsConfig.cookieForHeaderRegistration())
+                .formParam("Gender", "F")
                 .formParam("__RequestVerificationToken", credentialsConfig.cookieForBodyRegistration())
                 .formParam("FirstName", dataForTheTest.FIRST_NAME_FOR_REGISTRATION)
                 .formParam("LastName", dataForTheTest.LAST_NAME_FOR_REGISTRATION)
@@ -62,7 +63,7 @@ public class DemoWebShopTests extends BaseTest {
                 .formParam("register-button", dataForTheTest.BUTTON_FOR_REGISTRATION)
                 .log().all()
                 .when()
-                .post("/register")
+                .post("//register")
                 .then()
                 .log().all()
                 .statusCode(302);
