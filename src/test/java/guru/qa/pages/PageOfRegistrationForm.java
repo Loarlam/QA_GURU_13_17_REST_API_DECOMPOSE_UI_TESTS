@@ -21,7 +21,7 @@ public class PageOfRegistrationForm {
 
     @Step("Открываем минимальный элемент на странице для проверки работоспособности сайта")
     public PageOfRegistrationForm openingMinimalContentInSite() {
-        open("/Themes/DefaultClean/Content/images/logo.png");
+        open("Themes/DefaultClean/Content/images/top-menu-triangle.png");
         return this;
     }
 
@@ -71,22 +71,6 @@ public class PageOfRegistrationForm {
     public PageOfRegistrationForm clickingOnRegisterButton() {
         registerButton.click();
         return this;
-    }
-
-    @Step("Получаем куки после регистрации на сайте")
-    public Cookie takingCookieValue(String cookieNameForAuth) {
-        String cookieName = cookieNameForAuth;
-        String cookieValue = given()
-                .filter(withCustomTemplates())
-                .log().all()
-                .when()
-                .get("")
-                .then()
-                .log().all()
-                .statusCode(200)
-                .extract()
-                .cookie(cookieName);
-        return new Cookie(cookieName, cookieValue);
     }
 
     @Step("Проверяем наличие \"{expectedText}\" в результатах общего вывода")

@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import guru.qa.attachments.AttachmentsForReport;
 import guru.qa.config.CredentialsConfig;
+import guru.qa.pages.PageOfCustomerInfo;
 import guru.qa.pages.PageOfRegistrationForm;
 import io.qameta.allure.selenide.AllureSelenide;
 import io.restassured.RestAssured;
@@ -13,6 +14,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class BaseTest {
     PageOfRegistrationForm pageOfRegistrationForm = new PageOfRegistrationForm();
+    PageOfCustomerInfo pageOfCustomerInfo = new PageOfCustomerInfo();
     DataForTheTest dataForTheTest;
     static CredentialsConfig credentialsConfig = ConfigFactory.create(CredentialsConfig.class);
 

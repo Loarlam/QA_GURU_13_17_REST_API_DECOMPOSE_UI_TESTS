@@ -1,13 +1,16 @@
 package guru.qa.tests;
 
 import com.github.javafaker.Faker;
+import guru.qa.config.CookiesConfig;
 import guru.qa.enumvalues.Genders;
+import org.aeonbits.owner.ConfigFactory;
 import org.json.JSONObject;
 
 import java.util.Locale;
 import java.util.Random;
 
 public class DataForTheTest {
+    static CookiesConfig cookiesConfig = ConfigFactory.create(CookiesConfig.class);
     Faker fakerData = new Faker(Locale.FRANCE);
     Random random = new Random();
 
@@ -27,6 +30,9 @@ public class DataForTheTest {
             cookieNameForAuth = "NOPCOMMERCE.AUTH";
 
     JSONObject jsonBodyToAuth = new JSONObject()
+            .put("FirstName", FIRST_NAME_FOR_REGISTRATION)
+            .put("LastName", LAST_NAME_FOR_REGISTRATION)
             .put("Email", EMAIL_FOR_REGISTRATION)
-            .put("Password", PASSWORD_FOR_REGISTRATION);
+            .put("Password", PASSWORD_FOR_REGISTRATION)
+            .put("ConfirmPassword", PASSWORD_FOR_REGISTRATION);
 }
