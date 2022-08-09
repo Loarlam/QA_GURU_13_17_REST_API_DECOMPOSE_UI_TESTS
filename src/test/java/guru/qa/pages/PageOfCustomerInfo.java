@@ -15,5 +15,6 @@ public class PageOfCustomerInfo {
 
     @Step("Изменяем персональные данные пользователя")
     public PageOfCustomerInfo changingCustomerPersonalData(Cookie authCookie, String firsName, String lastName, String email ) {
+        return this;
     }
 }
