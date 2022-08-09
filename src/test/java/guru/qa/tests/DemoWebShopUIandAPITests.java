@@ -41,7 +41,7 @@ public class DemoWebShopUIandAPITests extends BaseTest {
             "при отработке которого формируется отчёт в Allure Report")
     @Description("Методика запуска процесса регистрации, выхода из аккаунта, авторизации и смены данных пользователя посредством подтягивания кода из github в Jenkins, " +
             "с выводом отчёта Allure, позволяет решить проблему привязки к локальной машине (API)")
-    @DisplayName("Регистрация, выход из аккаунта, авторизации и смена данных пользователя на сайте demowebshop.tricentis.com с последующей проверкой результата регистрации (API)")
+    @DisplayName("Регистрация, выход из аккаунта, авторизация и смена данных пользователя на сайте demowebshop.tricentis.com с последующей проверкой результата регистрации (API)")
     void registeringAndChangedAPIandUI() {
         dataForTheTest = new DataForTheTest();
 
@@ -84,6 +84,7 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 .cookie("__RequestVerificationToken", credentialsConfig.cookieForHeaderChangeData())
                 .formParam("__RequestVerificationToken", credentialsConfig.cookieForBodyChangeData())
                 .formParam("Email", dataForTheTest.emailForEdit)
+                .formParam("save-info-button", dataForTheTest.buttonForChangeData)
                 .when()
                 .post("/customer/info")
                 .then()

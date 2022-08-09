@@ -18,8 +18,9 @@ public class DataForTheTest {
             emailForRegistration = fakerData.internet().emailAddress(),
             passwordForRegistration = fakerData.internet().password(),
             buttonForRegistration = "Register",
+            resultOfRegistration = "Your registration completed",
             firstNameForEdit = fakerData.funnyName().name(),
             lastNameForEdit = fakerData.name().lastName(),
             emailForEdit = fakerData.internet().safeEmailAddress(),
-            resultOfRegistration = "Your registration completed";
+            buttonForChangeData = "Save";
 }
