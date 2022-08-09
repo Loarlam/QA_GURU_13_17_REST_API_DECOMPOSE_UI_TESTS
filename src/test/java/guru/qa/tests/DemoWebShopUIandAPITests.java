@@ -69,6 +69,9 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 .checkingResultOfRegistration(dataForTheTest.resultOfRegistration)
                 .clickingOnLogoutButton();
 
+        WebDriverRunner.driver().clearCookies();
+        WebDriverRunner.clearBrowserCache();
+
         String cookieValueForChangeData = given()
                 .filter(withCustomTemplates())
                 .formParam("Email", dataForTheTest.emailForRegistration)
