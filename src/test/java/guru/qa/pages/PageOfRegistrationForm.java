@@ -2,10 +2,12 @@ package guru.qa.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import org.openqa.selenium.Cookie;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class PageOfRegistrationForm {
     private SelenideElement name = $("#FirstName"),
@@ -30,8 +32,11 @@ public class PageOfRegistrationForm {
     }
 
     @Step("Открываем страницу для проверки регистрации")
-    public PageOfRegistrationForm openingWebsiteAfterRegisterPage() {
-        open("/customer/info");
+    public PageOfRegistrationForm openingWebsiteAfterRegisterPage(String cookieName, String cookieValue) {
+        open("/registerresult/1");
+        Cookie authCookie = new Cookie(cookieName, cookieValue);
+        getWebDriver().manage().addCookie(authCookie);
+        open("");
         return this;
     }
 

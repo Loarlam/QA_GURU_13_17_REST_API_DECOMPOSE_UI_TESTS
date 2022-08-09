@@ -46,7 +46,7 @@ public class DemoWebShopUIandAPITests extends BaseTest {
     void registeringAndChangedAPIandUI() {
         dataForTheTest = new DataForTheTest();
 
-        given()
+        String cookieValueForAuth = given()
                 .filter(withCustomTemplates())
                 .cookie("__RequestVerificationToken", credentialsConfig.cookieForHeaderRegistration())
                 .formParam("__RequestVerificationToken", credentialsConfig.cookieForBodyRegistration())
@@ -62,10 +62,13 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 .post("/register")
                 .then()
                 .log().all()
-                .statusCode(302);
+                .statusCode(302)
+                .extract()
+                .cookie(dataForTheTest.cookieNameForAuth);
 
-        pageOfRegistrationForm.openingWebsiteAfterRegisterPage();
 
+        pageOfRegistrationForm.openingWebsiteAfterRegisterPage(dataForTheTest.cookieNameForAuth, cookieValueForAuth)
+                .checkingResultOfRegistration(dataForTheTest.resultOfRegistration);
 
         /*given()
                 .filter(withCustomTemplates())
