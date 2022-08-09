@@ -57,6 +57,7 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 .formParam("Password", dataForTheTest.PASSWORD_FOR_REGISTRATION)
                 .formParam("ConfirmPassword", dataForTheTest.PASSWORD_FOR_REGISTRATION)
                 .formParam("register-button", dataForTheTest.BUTTON_FOR_REGISTRATION)
+                .log().all()
                 .when()
                 .post("/register")
                 .then()
