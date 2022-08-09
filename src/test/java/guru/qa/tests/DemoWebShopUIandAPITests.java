@@ -88,9 +88,11 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 .formParam("LastName", dataForTheTest.lastNameForRegistration)
                 .formParam("Email", dataForTheTest.emailForEdit)
                 .formParam("save-info-button", dataForTheTest.buttonForChangeData)
+                .log().all()
                 .when()
                 .post("/customer/info")
                 .then()
+                .log().all()
                 .statusCode(302);
 
         pageOfCustomerInfo.openingMinimalContentInSite()
