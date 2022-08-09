@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.given;
 
 
 public class DemoWebShopTests extends BaseTest {
-    @Test
+    /*@Test
     @Tag("demoWebShop")
     @Owner("Loarlam")
     @Severity(SeverityLevel.CRITICAL)
@@ -34,7 +34,7 @@ public class DemoWebShopTests extends BaseTest {
                 .clickingOnRegisterButton()
                 .checkingResultOfRegistration(dataForTheTest.resultOfRegistration)
                 .clickingOnLogoutButton();
-    }
+    }*/
 
     @Test
     @Tag("demoWebShop")
@@ -59,9 +59,11 @@ public class DemoWebShopTests extends BaseTest {
                 .formParam("Email", dataForTheTest.EMAIL_FOR_REGISTRATION)
                 .formParam("Password", dataForTheTest.PASSWORD_FOR_REGISTRATION)
                 .formParam("ConfirmPassword", dataForTheTest.PASSWORD_FOR_REGISTRATION)
+                .log().all()
                 .when()
                 .post("/register")
                 .then()
+                .log().all()
                 .statusCode(302);
     }
 }
