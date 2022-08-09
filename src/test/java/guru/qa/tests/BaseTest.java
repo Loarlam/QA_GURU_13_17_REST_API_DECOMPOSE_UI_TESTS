@@ -44,5 +44,9 @@ public class BaseTest {
         AttachmentsForReport.pageSource();
         AttachmentsForReport.browserConsoleLogs();
         AttachmentsForReport.addVideo();
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("enableVNC", false);
+        capabilities.setCapability("enableVideo", false);
+        Configuration.browserCapabilities = capabilities;
     }
 }

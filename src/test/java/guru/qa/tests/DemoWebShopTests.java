@@ -18,7 +18,6 @@ public class DemoWebShopTests extends BaseTest {
     @Story("Jenkins тянет код автотеста регистрации на сайте из гита, при отработке которого формируется отчёт в Allure Report")
     @Description("Методика запуска UI процесса регистрации на сайте посредством подтягивания кода из github в Jenkins, с выводом отчёта Allure, " +
             "позволяет решить проблему привязки к локальной машине")
-    @Link(name = "DemoWebShop", url = "http://demowebshop.tricentis.com")
     @DisplayName("Регистрация на сайте demowebshop.tricentis.com с последующей проверкой результата регистрации (UI)")
     void registeringOnSite() {
         dataForTheTest = new DataForTheTest();
