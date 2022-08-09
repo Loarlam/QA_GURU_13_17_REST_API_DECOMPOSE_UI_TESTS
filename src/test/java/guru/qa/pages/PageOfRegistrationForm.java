@@ -78,4 +78,10 @@ public class PageOfRegistrationForm {
         resultValue.shouldHave(text(expectedText));
         return this;
     }
+
+    @Step("Клик по кнопке \"Log out\"")
+    public PageOfRegistrationForm clickingOnLogoutButton() {
+        $(".ico-logout").click();
+        return this;
+    }
 }

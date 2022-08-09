@@ -32,7 +32,8 @@ public class DemoWebShopTests extends BaseTest {
                 .settingPassword(dataForTheTest.PASSWORD_FOR_REGISTRATION)
                 .settingConfirmPassword(dataForTheTest.PASSWORD_FOR_REGISTRATION)
                 .clickingOnRegisterButton()
-                .checkingResultOfRegistration(dataForTheTest.resultOfRegistration);
+                .checkingResultOfRegistration(dataForTheTest.resultOfRegistration)
+                .clickingOnLogoutButton();
     }
 
     @Test
