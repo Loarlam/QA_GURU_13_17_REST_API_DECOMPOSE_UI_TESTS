@@ -37,13 +37,12 @@ public class DemoWebShopUIandAPITests extends BaseTest {
     @Tag("demoWebShop2")
     @Owner("Loarlam")
     @Severity(SeverityLevel.NORMAL)
-    @Feature("Участие Jenkins в процессе регистрации, авторизации и смены данных пользователя на сайте (API)")
-    @Story("Jenkins тянет код автотеста процесса регистрации, авторизации и смены данных пользователя из гита, " +
+    @Feature("Участие Jenkins в процессе регистрации, выхода из аккаунта, авторизации и смены данных пользователя на сайте (API)")
+    @Story("Jenkins тянет код автотеста процесса регистрации, выхода из аккаунта, авторизации и смены данных пользователя из гита, " +
             "при отработке которого формируется отчёт в Allure Report")
-    @Description("Методика запуска процесса регистрации, авторизации и смены данных пользователя посредством подтягивания кода из github в Jenkins, " +
+    @Description("Методика запуска процесса регистрации, выхода из аккаунта, авторизации и смены данных пользователя посредством подтягивания кода из github в Jenkins, " +
             "с выводом отчёта Allure, позволяет решить проблему привязки к локальной машине (API)")
-    @Step("Прохождение регистрации на сайте")
-    @DisplayName("Регистрация, авторизация и смена данных пользователя на сайте demowebshop.tricentis.com с последующей проверкой результата регистрации (API)")
+    @DisplayName("Регистрация, выход из аккаунта, авторизации и смена данных пользователя на сайте demowebshop.tricentis.com с последующей проверкой результата регистрации (API)")
     void registeringAndChangedAPIandUI() {
         dataForTheTest = new DataForTheTest();
 
@@ -63,6 +62,15 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 .then()
                 .statusCode(302);
 
-        pageOfRegistrationForm.openingWebsiteAfterRegisterPage();
+        pageOfRegistrationForm.openingWebsiteAfterRegisterPage()
+                .checkingResultOfRegistration(dataForTheTest.resultOfRegistration);
+
+        given()
+                .filter(withCustomTemplates())
+                .cookie("__RequestVerificationToken", credentialsConfig.cookieForHeaderRegistration())
+                .when()
+                .get("/logout")
+                .then()
+                .statusCode(302);
     }
 }
