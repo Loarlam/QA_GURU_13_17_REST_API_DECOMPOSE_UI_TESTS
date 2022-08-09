@@ -22,13 +22,13 @@ public class PageOfRegistrationForm {
         return this;
     }
 
-    @Step("Открываем страницу с полями для ввода данных и убираем рекламу")
+    @Step("Открываем страницу регистрации")
     public PageOfRegistrationForm openingWebsiteRegisterPage() {
         open("/register");
         return this;
     }
 
-    @Step("Открываем страницу с полями для ввода данных и убираем рекламу")
+    @Step("Открываем страницу для проверки регистрации")
     public PageOfRegistrationForm openingWebsiteAfterRegisterPage() {
         open("/registerresult/1");
         return this;

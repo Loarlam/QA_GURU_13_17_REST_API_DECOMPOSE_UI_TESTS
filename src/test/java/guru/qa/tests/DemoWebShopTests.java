@@ -10,11 +10,11 @@ import static io.restassured.RestAssured.given;
 
 
 public class DemoWebShopTests extends BaseTest {
-    /*@Test
+    @Test
     @Tag("demoWebShop")
     @Owner("Loarlam")
     @Severity(SeverityLevel.CRITICAL)
-    @Feature("Участие Jenkins в процессе регистрации на сайте посреством UI")
+    @Feature("Участие Jenkins в процессе регистрации на сайте (UI)")
     @Story("Jenkins тянет код автотеста регистрации на сайте из гита, при отработке которого формируется отчёт в Allure Report")
     @Description("Методика запуска UI процесса регистрации на сайте посредством подтягивания кода из github в Jenkins, с выводом отчёта Allure, " +
             "позволяет решить проблему привязки к локальной машине")
@@ -34,13 +34,13 @@ public class DemoWebShopTests extends BaseTest {
                 .clickingOnRegisterButton()
                 .checkingResultOfRegistration(dataForTheTest.resultOfRegistration)
                 .clickingOnLogoutButton();
-    }*/
+    }
 
     @Test
     @Tag("demoWebShop")
     @Owner("Loarlam")
     @Severity(SeverityLevel.NORMAL)
-    @Feature("Участие Jenkins в процессе регистрации, авторизации и смены данных пользователя на сайте посредством API")
+    @Feature("Участие Jenkins в процессе регистрации, авторизации и смены данных пользователя на сайте (API)")
     @Story("Jenkins тянет код автотеста процесса регистрации, авторизации и смены данных пользователя из гита, " +
             "при отработке которого формируется отчёт в Allure Report")
     @Description("Методика запуска процесса регистрации, авторизации и смены данных пользователя посредством подтягивания кода из github в Jenkins, " +
@@ -50,7 +50,7 @@ public class DemoWebShopTests extends BaseTest {
     void registrationAndAuthOnSiteWithCheckingResult() {
         dataForTheTest = new DataForTheTest();
 
-        /*given()
+        given()
                 .filter(withCustomTemplates())
                 .cookie("__RequestVerificationToken", credentialsConfig.cookieForHeaderRegistration())
                 .formParam("__RequestVerificationToken", credentialsConfig.cookieForBodyRegistration())
@@ -61,27 +61,9 @@ public class DemoWebShopTests extends BaseTest {
                 .formParam("Password", dataForTheTest.PASSWORD_FOR_REGISTRATION)
                 .formParam("ConfirmPassword", dataForTheTest.PASSWORD_FOR_REGISTRATION)
                 .formParam("register-button", dataForTheTest.BUTTON_FOR_REGISTRATION)
-                .log().all()
                 .when()
                 .post("/register")
                 .then()
-                .log().all()
-                .statusCode(302);*/
-
-        given()
-                .filter(withCustomTemplates())
-                .cookie("__RequestVerificationToken", credentialsConfig.cookieForHeaderRegistration())
-                .formParam("__RequestVerificationToken", credentialsConfig.cookieForBodyRegistration())
-                .formParam("FirstName", dataForTheTest.FIRST_NAME_FOR_REGISTRATION)
-                .formParam("LastName", dataForTheTest.LAST_NAME_FOR_REGISTRATION)
-                .formParam("Email", dataForTheTest.EMAIL_FOR_REGISTRATION)
-                .formParam("Password", dataForTheTest.PASSWORD_FOR_REGISTRATION)
-                .formParam("ConfirmPassword", dataForTheTest.PASSWORD_FOR_REGISTRATION)
-                .log().all()
-                .when()
-                .post("/register")
-                .then()
-                .log().all()
                 .statusCode(302);
 
         pageOfRegistrationForm.openingWebsiteAfterRegisterPage();
