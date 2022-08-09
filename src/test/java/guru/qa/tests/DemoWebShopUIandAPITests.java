@@ -4,7 +4,9 @@ import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Cookie;
 
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static guru.qa.helpers.CustomApiListener.withCustomTemplates;
 import static io.restassured.RestAssured.given;
 
@@ -66,8 +68,10 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 .extract()
                 .cookie(dataForTheTest.cookieNameForAuth);
 
+        getWebDriver().manage().addCookie(new Cookie(dataForTheTest.cookieNameForAuth, cookieValueForAuth));
 
-        pageOfRegistrationForm.openingWebsiteAfterRegisterPage(dataForTheTest.cookieNameForAuth, cookieValueForAuth)
+        pageOfRegistrationForm.openingMinimalContentInSite()
+                .openingWebsiteAfterRegisterPage()
                 .checkingResultOfRegistration(dataForTheTest.resultOfRegistration);
 
         /*given()
@@ -77,7 +81,5 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 .get("/logout")
                 .then()
                 .statusCode(302);*/
-
-
     }
 }
