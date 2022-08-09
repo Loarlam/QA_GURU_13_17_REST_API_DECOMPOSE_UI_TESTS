@@ -19,8 +19,8 @@ public class BaseTest {
     DataForTheTest dataForTheTest;
     static CredentialsConfig credentialsConfig = ConfigFactory.create(CredentialsConfig.class);
 
-    @BeforeAll
-    static void beforeAllTests() {
+    @BeforeEach
+    void beforeAllTests() {
         SelenideLogger.addListener("Allure", new AllureSelenide());
         RestAssured.baseURI = "http://demowebshop.tricentis.com";
 

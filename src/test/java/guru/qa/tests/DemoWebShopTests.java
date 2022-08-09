@@ -11,7 +11,7 @@ import static io.restassured.RestAssured.given;
 
 public class DemoWebShopTests extends BaseTest {
     @Test
-    @Tag("demoWebShop")
+    @Tag("demoWebShop1")
     @Owner("Loarlam")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Участие Jenkins в процессе регистрации на сайте (UI)")
@@ -36,7 +36,7 @@ public class DemoWebShopTests extends BaseTest {
     }
 
     @Test
-    @Tag("demoWebShop")
+    @Tag("demoWebShop2")
     @Owner("Loarlam")
     @Severity(SeverityLevel.NORMAL)
     @Feature("Участие Jenkins в процессе регистрации, авторизации и смены данных пользователя на сайте (API)")

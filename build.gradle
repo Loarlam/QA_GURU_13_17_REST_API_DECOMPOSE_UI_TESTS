@@ -65,6 +65,7 @@ tasks.withType(Test) {
 task taskWithTagDemoWebShop(type: Test) {
     systemProperties(System.getProperties())
     useJUnitPlatform {
-        includeTags "demoWebShop"
+        includeTags "demoWebShop1"
+        includeTags "demoWebShop2"
     }
 }
