@@ -13,6 +13,8 @@ import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
+
 public class BaseTest {
     PageOfRegistrationForm pageOfRegistrationForm = new PageOfRegistrationForm();
     PageOfCustomerInfo pageOfCustomerInfo = new PageOfCustomerInfo();
@@ -44,5 +46,6 @@ public class BaseTest {
         AttachmentsForReport.pageSource();
         AttachmentsForReport.browserConsoleLogs();
         AttachmentsForReport.addVideo();
+        closeWebDriver();
     }
 }
