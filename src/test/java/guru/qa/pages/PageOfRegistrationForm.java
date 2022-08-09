@@ -4,6 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Cookie;
 
+import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -35,6 +36,13 @@ public class PageOfRegistrationForm {
     public PageOfRegistrationForm openingWebsiteAfterRegisterPage(String cookieName, String cookieValue) {
         getWebDriver().manage().addCookie(new Cookie(cookieName, cookieValue));
         open("/registerresult/1");
+        return this;
+    }
+
+    @Step("Открываем страницу для проверки смены данных")
+    public PageOfRegistrationForm openingWebsiteAfterChangeData(String cookieName, String cookieValue) {
+        getWebDriver().manage().addCookie(new Cookie(cookieName, cookieValue));
+        open("/customer/info");
         return this;
     }
 
@@ -83,6 +91,12 @@ public class PageOfRegistrationForm {
     @Step("Клик по кнопке \"Log out\"")
     public PageOfRegistrationForm clickingOnLogoutButton() {
         logoutButton.click();
+        return this;
+    }
+
+    @Step("Проверяем наличие \"{expectedText}\" в результатах общего вывода")
+    public PageOfRegistrationForm checkingResultOfChangeData(String expectedText) {
+        name.shouldHave(attribute("value", expectedText));
         return this;
     }
 }

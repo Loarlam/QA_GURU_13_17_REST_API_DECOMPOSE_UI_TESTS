@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
 
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static guru.qa.helpers.CustomApiListener.withCustomTemplates;
 import static io.restassured.RestAssured.given;
 
@@ -25,11 +24,11 @@ public class DemoWebShopUIandAPITests extends BaseTest {
 
         pageOfRegistrationForm.openingMinimalContentInSite()
                 .openingWebsiteRegisterPage()
-                .settingFirstName(dataForTheTest.FIRST_NAME_FOR_REGISTRATION)
-                .settingSurname(dataForTheTest.LAST_NAME_FOR_REGISTRATION)
-                .settingEmail(dataForTheTest.EMAIL_FOR_REGISTRATION)
-                .settingPassword(dataForTheTest.PASSWORD_FOR_REGISTRATION)
-                .settingConfirmPassword(dataForTheTest.PASSWORD_FOR_REGISTRATION)
+                .settingFirstName(dataForTheTest.firstNameForRegistration)
+                .settingSurname(dataForTheTest.lastNameForRegistration)
+                .settingEmail(dataForTheTest.emailForRegistration)
+                .settingPassword(dataForTheTest.passwordForRegistration)
+                .settingConfirmPassword(dataForTheTest.passwordForRegistration)
                 .clickingOnRegisterButton()
                 .checkingResultOfRegistration(dataForTheTest.resultOfRegistration)
                 .clickingOnLogoutButton();
@@ -52,31 +51,37 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 .filter(withCustomTemplates())
                 .cookie("__RequestVerificationToken", credentialsConfig.cookieForHeaderRegistration())
                 .formParam("__RequestVerificationToken", credentialsConfig.cookieForBodyRegistration())
-                .formParam("Gender", dataForTheTest.GENDER_FOR_REGISTRATION)
-                .formParam("FirstName", dataForTheTest.FIRST_NAME_FOR_REGISTRATION)
-                .formParam("LastName", dataForTheTest.LAST_NAME_FOR_REGISTRATION)
-                .formParam("Email", dataForTheTest.EMAIL_FOR_REGISTRATION)
-                .formParam("Password", dataForTheTest.PASSWORD_FOR_REGISTRATION)
-                .formParam("ConfirmPassword", dataForTheTest.PASSWORD_FOR_REGISTRATION)
-                .formParam("register-button", dataForTheTest.BUTTON_FOR_REGISTRATION)
+                .formParam("Gender", dataForTheTest.genderForRegistration)
+                .formParam("FirstName", dataForTheTest.firstNameForRegistration)
+                .formParam("LastName", dataForTheTest.lastNameForRegistration)
+                .formParam("Email", dataForTheTest.emailForRegistration)
+                .formParam("Password", dataForTheTest.passwordForRegistration)
+                .formParam("ConfirmPassword", dataForTheTest.passwordForRegistration)
+                .formParam("register-button", dataForTheTest.buttonForRegistration)
                 .when()
                 .post("/register")
                 .then()
                 .statusCode(302)
                 .extract()
-                .cookie(dataForTheTest.cookieNameForAuth);
+                .cookie("NOPCOMMERCE.AUTH");
 
         pageOfRegistrationForm.openingMinimalContentInSite()
-                .openingWebsiteAfterRegisterPage(dataForTheTest.cookieNameForAuth, cookieValueForAuth)
+                .openingWebsiteAfterRegisterPage("NOPCOMMERCE.AUTH", cookieValueForAuth)
                 .checkingResultOfRegistration(dataForTheTest.resultOfRegistration);
 
         given()
                 .filter(withCustomTemplates())
+                .cookie("NOPCOMMERCE.AUTH", cookieValueForAuth)
                 .cookie("__RequestVerificationToken", credentialsConfig.cookieForHeaderRegistration())
+                .formParam("__RequestVerificationToken", credentialsConfig.cookieForBodyRegistration())
+                .formParam("Email", dataForTheTest.emailForEdit)
                 .when()
-                .get("/logout")
+                .post("/customer/info")
                 .then()
-                .log().all()
                 .statusCode(302);
+
+        pageOfRegistrationForm.openingMinimalContentInSite()
+                .openingWebsiteAfterChangeData("NOPCOMMERCE.AUTH", cookieValueForAuth)
+                .checkingResultOfChangeData(dataForTheTest.emailForEdit);
     }
 }
