@@ -25,7 +25,6 @@ public class DemoWebShopTests extends BaseTest {
 
         pageOfRegistrationForm.openingMinimalContentInSite()
                 .openingWebsiteRegisterPage()
-                .settingGender(dataForTheTest.GENDER_FOR_REGISTRATION)
                 .settingFirstName(dataForTheTest.FIRST_NAME_FOR_REGISTRATION)
                 .settingSurname(dataForTheTest.LAST_NAME_FOR_REGISTRATION)
                 .settingEmail(dataForTheTest.EMAIL_FOR_REGISTRATION)
@@ -54,7 +53,7 @@ public class DemoWebShopTests extends BaseTest {
                 .filter(withCustomTemplates())
                 .cookie("__RequestVerificationToken", credentialsConfig.cookieForHeaderRegistration())
                 .formParam("__RequestVerificationToken", credentialsConfig.cookieForBodyRegistration())
-                .formParam("Gender", "F")
+                .formParam("Gender", dataForTheTest.GENDER_FOR_REGISTRATION)
                 .formParam("FirstName", dataForTheTest.FIRST_NAME_FOR_REGISTRATION)
                 .formParam("LastName", dataForTheTest.LAST_NAME_FOR_REGISTRATION)
                 .formParam("Email", dataForTheTest.EMAIL_FOR_REGISTRATION)
@@ -67,5 +66,7 @@ public class DemoWebShopTests extends BaseTest {
                 .statusCode(302);
 
         pageOfRegistrationForm.openingWebsiteAfterRegisterPage();
+
+
     }
 }

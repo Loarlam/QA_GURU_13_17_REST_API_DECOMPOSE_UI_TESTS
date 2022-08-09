@@ -38,8 +38,8 @@ public class BaseTest {
         Configuration.browserCapabilities = capabilities;
     }
 
-    @AfterAll
-    static void afterAllTests() {
+    @AfterEach
+    void afterAllTests() {
         AttachmentsForReport.attachScreenshot();
         AttachmentsForReport.pageSource();
         AttachmentsForReport.browserConsoleLogs();

@@ -14,6 +14,7 @@ public class PageOfRegistrationForm {
             password = $("#Password"),
             confirmPassword = $("#ConfirmPassword"),
             registerButton = $("#register-button"),
+            logoutButton = $(".ico-logout"),
             resultValue = $(".result");
 
     @Step("Открываем минимальный элемент на странице для проверки работоспособности сайта")
@@ -31,12 +32,6 @@ public class PageOfRegistrationForm {
     @Step("Открываем страницу для проверки регистрации")
     public PageOfRegistrationForm openingWebsiteAfterRegisterPage() {
         open("/registerresult/1");
-        return this;
-    }
-
-    @Step("Выбираем \"{userGender}\" близ \"Gender\"")
-    public PageOfRegistrationForm settingGender(String userGender) {
-        $(String.format("#gender-%s", userGender)).sendKeys(" ");
         return this;
     }
 
@@ -84,7 +79,7 @@ public class PageOfRegistrationForm {
 
     @Step("Клик по кнопке \"Log out\"")
     public PageOfRegistrationForm clickingOnLogoutButton() {
-        $(".ico-logout").click();
+        logoutButton.click();
         return this;
     }
 }
