@@ -81,9 +81,10 @@ public class DemoWebShopUIandAPITests extends BaseTest {
 
         given()
                 .filter(withCustomTemplates())
-                .cookie("NOPCOMMERCE.AUTH", cookieValueForChangeData)
                 .cookie("__RequestVerificationToken", credentialsConfig.cookieForHeaderChangeData())
+                .cookie("NOPCOMMERCE.AUTH", cookieValueForChangeData)
                 .formParam("__RequestVerificationToken", credentialsConfig.cookieForBodyChangeData())
+                .formParam("Gender", dataForTheTest.genderForRegistration)
                 .formParam("FirstName", dataForTheTest.firstNameForRegistration)
                 .formParam("LastName", dataForTheTest.lastNameForRegistration)
                 .formParam("Email", dataForTheTest.emailForEdit)
