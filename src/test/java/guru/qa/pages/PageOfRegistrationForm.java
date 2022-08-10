@@ -110,6 +110,20 @@ public class PageOfRegistrationForm {
                 .cookie("NOPCOMMERCE.AUTH");
     }
 
+    @Step("API для выхода из личного кабинета")
+    public PageOfRegistrationForm logoutingAPI(String headerCookie, String cookieName, String cookieValue) {
+        given()
+                .filter(withCustomTemplates())
+                .cookie("__RequestVerificationToken", headerCookie)
+                .cookie(cookieName, cookieValue)
+                .when()
+                .get("/logout")
+                .then()
+                .statusCode(302);
+
+        return this;
+    }
+
     @Step("API для авторизации на сайте")
     public String authingAPI(String headerCookie, String email, String password) {
         return given()

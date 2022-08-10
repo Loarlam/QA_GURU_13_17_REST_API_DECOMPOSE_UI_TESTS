@@ -15,12 +15,12 @@ public class PageOfCustomerInfo {
     private SelenideElement email = $("#Email");
 
     @Step("API для изменения данных пользователя")
-    public PageOfCustomerInfo changingAPI(String headerCookie, String authCookie, String bodyCookie, String gender, String firstName,
+    public String changingAPI(String headerCookie, String authCookieName, String authCookieValue, String bodyCookie, String gender, String firstName,
                                          String lastName, String email) {
-        given()
+        return given()
                 .filter(withCustomTemplates())
                 .cookie("__RequestVerificationToken", headerCookie)
-                .cookie("NOPCOMMERCE.AUTH", authCookie)
+                .cookie(authCookieName, authCookieValue)
                 .formParam("__RequestVerificationToken", bodyCookie)
                 .formParam("Gender", gender)
                 .formParam("FirstName", firstName)
@@ -32,9 +32,9 @@ public class PageOfCustomerInfo {
                 .post("/customer/info")
                 .then()
                 .log().all()
-                .statusCode(302);
-
-        return this;
+                .statusCode(302)
+                .extract()
+                .cookie("NOPCOMMERCE.AUTH");
     }
 
     @Step("Открываем минимальный элемент на странице для проверки работоспособности сайта")

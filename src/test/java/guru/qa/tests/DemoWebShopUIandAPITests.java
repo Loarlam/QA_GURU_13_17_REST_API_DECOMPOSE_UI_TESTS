@@ -1,13 +1,9 @@
 package guru.qa.tests;
 
-import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-
-import static guru.qa.helpers.CustomApiListener.withCustomTemplates;
-import static io.restassured.RestAssured.given;
 
 public class DemoWebShopUIandAPITests extends BaseTest {
     @Test
@@ -59,19 +55,20 @@ public class DemoWebShopUIandAPITests extends BaseTest {
         pageOfRegistrationForm.openingMinimalContentInSite()
                 .openingWebsiteAfterRegisterPage("NOPCOMMERCE.AUTH", authHeaderCookieForRegister)
                 .checkingResultOfRegistration(dataForTheTest.resultOfRegistration)
-                .clickingOnLogoutButton();
+                .logoutingAPI(credentialsConfig.cookieForHeaderRegistration(), "NOPCOMMERCE.AUTH", authHeaderCookieForRegister);
 
         String authHeaderCookieForChangeData = pageOfRegistrationForm.authingAPI(
                 credentialsConfig.cookieForHeaderRegistration(),
                 dataForTheTest.emailForRegistration,
                 dataForTheTest.passwordForRegistration);
 
-        pageOfCustomerInfo.changingAPI(credentialsConfig.cookieForHeaderChangeData(), authHeaderCookieForChangeData,
-                        credentialsConfig.cookieForBodyChangeData(), dataForTheTest.genderForRegistration,
-                        dataForTheTest.firstNameForRegistration, dataForTheTest.lastNameForRegistration,
-                        dataForTheTest.emailForEdit)
-                .openingMinimalContentInSite()
-                .openingWebsiteAfterChangeData("NOPCOMMERCE.AUTH", authHeaderCookieForChangeData)
+        String authCookieForChangeDataCheck = pageOfCustomerInfo.changingAPI(credentialsConfig.cookieForHeaderRegistration(), "NOPCOMMERCE.AUTH", authHeaderCookieForChangeData,
+                credentialsConfig.cookieForBodyChangeData(), dataForTheTest.genderForRegistration,
+                dataForTheTest.firstNameForEdit, dataForTheTest.lastNameForEdit,
+                dataForTheTest.emailForEdit);
+
+        pageOfCustomerInfo.openingMinimalContentInSite()
+                .openingWebsiteAfterChangeData("NOPCOMMERCE.AUTH", authCookieForChangeDataCheck)
                 .checkingResultOfChangeData(dataForTheTest.emailForEdit);
     }
 }
