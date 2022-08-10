@@ -38,6 +38,8 @@ public class BaseTest {
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", true);
         Configuration.browserCapabilities = capabilities;
+        WebDriverRunner.driver().clearCookies();
+        WebDriverRunner.clearBrowserCache();
     }
 
     @AfterEach
