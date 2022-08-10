@@ -66,16 +66,17 @@ public class DemoWebShopUIandAPITests extends BaseTest {
     @Description("Методика запуска процесса авторизации и смены данных пользователя посредством подтягивания кода из github в Jenkins, " +
             "с выводом отчёта Allure, позволяет решить проблему привязки к локальной машине (API + UI)")
     @DisplayName("Авторизация и смена данных пользователя на сайте demowebshop.tricentis.com с последующей проверкой результата регистрации (API + UI)")
-    void authAndAchangedAPIandIUI() {
+    void authAndChangedAPIandIUI() {
         String authHeaderCookieForChangeData = pageOfRegistrationForm.authingAPI(
                 credentialsConfig.userEmail(),
                 credentialsConfig.userPassword());
 
-        pageOfCustomerInfo.changingAPI("NOPCOMMERCE.AUTH", authHeaderCookieForChangeData, credentialsConfig.cookieForHeaderChangeData(),
+
+        pageOfCustomerInfo.openingMinimalContentInSite()
+                .changingAPI("NOPCOMMERCE.AUTH", authHeaderCookieForChangeData, credentialsConfig.cookieForHeaderChangeData(),
                         credentialsConfig.cookieForBodyChangeData(), dataForTheTest.genderForRegistration,
                         dataForTheTest.firstNameForEdit, dataForTheTest.lastNameForEdit,
                         credentialsConfig.userEmail())
-                .openingMinimalContentInSite()
                 .openingWebsiteAfterChangeData("NOPCOMMERCE.AUTH", authHeaderCookieForChangeData)
                 .checkingResultOfChangeData(dataForTheTest.firstNameForEdit, dataForTheTest.lastNameForEdit);
     }
