@@ -34,11 +34,10 @@ public class DemoWebShopUIandAPITests extends BaseTest {
     @Owner("Loarlam")
     @Severity(SeverityLevel.NORMAL)
     @Feature("Участие Jenkins в процессе регистрации, выхода из аккаунта, авторизации и смены данных пользователя на сайте (API)")
-    @Story("Jenkins тянет код автотеста процесса регистрации, выхода из аккаунта, авторизации и смены данных пользователя из гита, " +
-            "при отработке которого формируется отчёт в Allure Report")
-    @Description("Методика запуска процесса регистрации, выхода из аккаунта, авторизации и смены данных пользователя посредством подтягивания кода из github в Jenkins, " +
+    @Story("Jenkins тянет код автотеста процесса регистрации, выхода из аккаунта при отработке которого формируется отчёт в Allure Report")
+    @Description("Методика запуска процесса регистрации, выхода из аккаунта посредством подтягивания кода из github в Jenkins, " +
             "с выводом отчёта Allure, позволяет решить проблему привязки к локальной машине (API)")
-    @DisplayName("Регистрация, выход из аккаунта, авторизация и смена данных пользователя на сайте demowebshop.tricentis.com с последующей проверкой результата регистрации (API)")
+    @DisplayName("Регистрация, выход из аккаунта на сайте demowebshop.tricentis.com с последующей проверкой результата регистрации (API)")
     void registeringAndChangedAPIandUI() {
         dataForTheTest = new DataForTheTest();
 
@@ -56,18 +55,29 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 .openingWebsiteAfterRegisterPage("NOPCOMMERCE.AUTH", authHeaderCookieForRegister)
                 .checkingResultOfRegistration(dataForTheTest.resultOfRegistration)
                 .logoutingAPI(credentialsConfig.cookieForHeaderRegistration(), "NOPCOMMERCE.AUTH", authHeaderCookieForRegister);
+    }
 
+    @Test
+    @Tag("demoWebShop3")
+    @Owner("Loarlam")
+    @Severity(SeverityLevel.NORMAL)
+    @Feature("Участие Jenkins в процессе авторизации и смены данных пользователя на сайте (API)")
+    @Story("Jenkins тянет код автотеста процесса авторизации и смены данных пользователя из гита, " +
+            "при отработке которого формируется отчёт в Allure Report")
+    @Description("Методика запуска процесса авторизации и смены данных пользователя посредством подтягивания кода из github в Jenkins, " +
+            "с выводом отчёта Allure, позволяет решить проблему привязки к локальной машине (API)")
+    @DisplayName("Авторизация и смена данных пользователя на сайте demowebshop.tricentis.com с последующей проверкой результата регистрации (API)")
+    void authAndAchangedAPIandIUI() {
         String authHeaderCookieForChangeData = pageOfRegistrationForm.authingAPI(
-                credentialsConfig.cookieForHeaderRegistration(),
-                dataForTheTest.emailForRegistration,
-                dataForTheTest.passwordForRegistration);
+                credentialsConfig.userEmail(),
+                credentialsConfig.userPassword());
 
-        pageOfCustomerInfo.changingAPI(credentialsConfig.cookieForHeaderRegistration(), "NOPCOMMERCE.AUTH", authHeaderCookieForChangeData,
+        pageOfCustomerInfo.changingAPI("NOPCOMMERCE.AUTH", authHeaderCookieForChangeData, credentialsConfig.cookieForHeaderChangeData(),
                         credentialsConfig.cookieForBodyChangeData(), dataForTheTest.genderForRegistration,
                         dataForTheTest.firstNameForEdit, dataForTheTest.lastNameForEdit,
-                        dataForTheTest.emailForEdit)
+                        credentialsConfig.userEmail())
                 .openingMinimalContentInSite()
                 .openingWebsiteAfterChangeData("NOPCOMMERCE.AUTH", authHeaderCookieForChangeData)
-                .checkingResultOfChangeData(dataForTheTest.emailForEdit);
+                .checkingResultOfChangeData(dataForTheTest.firstNameForEdit, dataForTheTest.lastNameForEdit);
     }
 }

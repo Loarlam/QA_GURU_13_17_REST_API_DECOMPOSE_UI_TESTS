@@ -12,15 +12,17 @@ import static guru.qa.helpers.CustomApiListener.withCustomTemplates;
 import static io.restassured.RestAssured.given;
 
 public class PageOfCustomerInfo {
-    private SelenideElement email = $("#Email");
+    private SelenideElement name = $("#FirstName"),
+            lastName = $("#LastName"),
+            email = $("#Email");
 
     @Step("API для изменения данных пользователя")
-    public PageOfCustomerInfo changingAPI(String headerCookie, String authCookieName, String authCookieValue, String bodyCookie, String gender, String firstName,
+    public PageOfCustomerInfo changingAPI(String authCookieName, String authCookieValue, String headerCookie, String bodyCookie, String gender, String firstName,
                                           String lastName, String email) {
         given()
                 .filter(withCustomTemplates())
-                .cookie("__RequestVerificationToken", headerCookie)
                 .cookie(authCookieName, authCookieValue)
+                .cookie("__RequestVerificationToken", headerCookie)
                 .formParam("__RequestVerificationToken", bodyCookie)
                 .formParam("Gender", gender)
                 .formParam("FirstName", firstName)
@@ -51,8 +53,9 @@ public class PageOfCustomerInfo {
     }
 
     @Step("Проверяем наличие \"{expectedText}\" в результатах общего вывода")
-    public PageOfCustomerInfo checkingResultOfChangeData(String expectedText) {
-        email.shouldHave(attribute("value", expectedText));
+    public PageOfCustomerInfo checkingResultOfChangeData(String expectedName, String expectedLastName) {
+        name.shouldHave(attribute("value", expectedName));
+        lastName.shouldHave(attribute("value", expectedLastName));
         return this;
     }
 }

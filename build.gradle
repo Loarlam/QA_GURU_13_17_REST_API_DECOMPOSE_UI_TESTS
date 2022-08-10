@@ -67,5 +67,6 @@ task taskWithTagDemoWebShop(type: Test) {
     useJUnitPlatform {
         includeTags "demoWebShop1"
         includeTags "demoWebShop2"
+        includeTags "demoWebShop3"
     }
 }

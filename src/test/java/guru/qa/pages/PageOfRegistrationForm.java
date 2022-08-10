@@ -125,10 +125,9 @@ public class PageOfRegistrationForm {
     }
 
     @Step("API для авторизации на сайте")
-    public String authingAPI(String headerCookie, String email, String password) {
+    public String authingAPI(String email, String password) {
         return given()
                 .filter(withCustomTemplates())
-                .cookie("__RequestVerificationToken", headerCookie)
                 .formParam("Email", email)
                 .formParam("Password", password)
                 .when()
