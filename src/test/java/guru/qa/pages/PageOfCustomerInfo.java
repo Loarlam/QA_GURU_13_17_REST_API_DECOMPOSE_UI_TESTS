@@ -32,7 +32,7 @@ public class PageOfCustomerInfo {
                 .post("/customer/info")
                 .then()
                 .log().all()
-                .statusCode(302)
+                .statusCode(302);
 
         return this;
     }
