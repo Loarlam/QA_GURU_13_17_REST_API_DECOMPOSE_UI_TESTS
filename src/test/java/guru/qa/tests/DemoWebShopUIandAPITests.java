@@ -55,7 +55,7 @@ public class DemoWebShopUIandAPITests extends BaseTest {
         pageOfRegistrationForm.openingMinimalContentInSite()
                 .openingWebsiteAfterRegisterPage("NOPCOMMERCE.AUTH", authHeaderCookieForRegister)
                 .checkingResultOfRegistration(dataForTheTest.resultOfRegistration)
-                .logoutingAPI(credentialsConfig.cookieForHeaderRegistration());
+                .logoutingAPI(credentialsConfig.cookieForHeaderRegistration(), "NOPCOMMERCE.AUTH", authHeaderCookieForRegister);
 
         String authHeaderCookieForChangeData = pageOfRegistrationForm.authingAPI(
                 credentialsConfig.cookieForHeaderRegistration(),

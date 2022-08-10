@@ -111,14 +111,15 @@ public class PageOfRegistrationForm {
     }
 
     @Step("API для выхода из личного кабинета")
-    public PageOfRegistrationForm logoutingAPI(String headerCookie) {
+    public PageOfRegistrationForm logoutingAPI(String headerCookie, String cookieName, String cookieValue) {
         given()
                 .filter(withCustomTemplates())
                 .cookie("__RequestVerificationToken", headerCookie)
+                .cookie(cookieName, cookieValue)
                 .when()
                 .get("/logout")
                 .then()
-                .statusCode(302);
+                .statusCode(200);
 
         return this;
     }
