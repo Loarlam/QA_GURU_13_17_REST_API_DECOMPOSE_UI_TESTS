@@ -73,9 +73,14 @@ public class DemoWebShopUIandAPITests extends BaseTest {
 
 
         pageOfCustomerInfo.openingMinimalContentInSite()
-                .changingAPI("NOPCOMMERCE.AUTH", authHeaderCookieForChangeData, credentialsConfig.cookieForHeaderChangeData(),
-                        credentialsConfig.cookieForBodyChangeData(), dataForTheTest.genderForRegistration,
-                        dataForTheTest.firstNameForEdit, dataForTheTest.lastNameForEdit,
+                .changingAPI(
+                        "NOPCOMMERCE.AUTH",
+                        authHeaderCookieForChangeData,
+                        credentialsConfig.cookieForHeaderChangeData(),
+                        credentialsConfig.cookieForBodyChangeData(),
+                        dataForTheTest.genderForRegistration,
+                        dataForTheTest.firstNameForEdit,
+                        dataForTheTest.lastNameForEdit,
                         credentialsConfig.userEmail())
                 .openingWebsiteAfterChangeData("NOPCOMMERCE.AUTH", authHeaderCookieForChangeData)
                 .checkingResultOfChangeData(dataForTheTest.firstNameForEdit, dataForTheTest.lastNameForEdit);
