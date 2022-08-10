@@ -130,9 +130,11 @@ public class PageOfRegistrationForm {
                 .filter(withCustomTemplates())
                 .formParam("Email", email)
                 .formParam("Password", password)
+                .log().all()
                 .when()
                 .post("/login")
                 .then()
+                .log().all()
                 .statusCode(302)
                 .extract()
                 .cookie("NOPCOMMERCE.AUTH");
