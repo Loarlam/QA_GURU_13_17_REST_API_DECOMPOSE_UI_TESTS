@@ -17,14 +17,13 @@ public class PageOfCustomerInfo {
             email = $("#Email");
 
     @Step("API для изменения данных пользователя")
-    public PageOfCustomerInfo changingAPI(String authCookieName, String authCookieValue, String headerCookie, String bodyCookie, String gender, String firstName,
+    public PageOfCustomerInfo changingAPI(String authCookieName, String authCookieValue, String headerCookie, String bodyCookie, String firstName,
                                           String lastName, String email) {
         given()
                 .filter(withCustomTemplates())
                 .cookie(authCookieName, authCookieValue)
                 .cookie("__RequestVerificationToken", headerCookie)
                 .formParam("__RequestVerificationToken", bodyCookie)
-                .formParam("Gender", gender)
                 .formParam("FirstName", firstName)
                 .formParam("LastName", lastName)
                 .formParam("Email", email)
