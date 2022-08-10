@@ -14,9 +14,9 @@ import static io.restassured.RestAssured.given;
 public class PageOfCustomerInfo {
     private SelenideElement email = $("#Email");
 
-    @Step("API для авторизации на сайте")
-    public PageOfCustomerInfo authingAPI(String headerCookie, String authCookie, String bodyCookie, String gender, String firstName,
-                                         String lastName, String email, String nameOfSaveButton) {
+    @Step("API для изменения данных пользователя")
+    public PageOfCustomerInfo changingAPI(String headerCookie, String authCookie, String bodyCookie, String gender, String firstName,
+                                         String lastName, String email) {
         given()
                 .filter(withCustomTemplates())
                 .cookie("__RequestVerificationToken", headerCookie)
@@ -26,7 +26,7 @@ public class PageOfCustomerInfo {
                 .formParam("FirstName", firstName)
                 .formParam("LastName", lastName)
                 .formParam("Email", email)
-                .formParam("save-info-button", nameOfSaveButton)
+                .formParam("save-info-button", "Save")
                 .log().all()
                 .when()
                 .post("/customer/info")

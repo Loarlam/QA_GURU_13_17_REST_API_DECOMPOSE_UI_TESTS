@@ -90,7 +90,7 @@ public class PageOfRegistrationForm {
 
     @Step("API для регистрации на сайте")
     public String registeringAPI(String headerCookie, String bodyCookie, String gender, String firstName,
-                                 String lastName, String email, String password, String confirmPassword, String nameOfRegisterButton) {
+                                 String lastName, String email, String password, String confirmPassword) {
         return given()
                 .filter(withCustomTemplates())
                 .cookie("__RequestVerificationToken", headerCookie)
@@ -101,7 +101,7 @@ public class PageOfRegistrationForm {
                 .formParam("Email", email)
                 .formParam("Password", password)
                 .formParam("ConfirmPassword", confirmPassword)
-                .formParam("register-button", nameOfRegisterButton)
+                .formParam("register-button", "Register")
                 .when()
                 .post("/register")
                 .then()
