@@ -17,8 +17,14 @@ public class PageOfCustomerInfo {
             email = $("#Email");
 
     @Step("API для изменения данных пользователя")
-    public PageOfCustomerInfo changingAPI(String authCookieName, String authCookieValue, String headerCookie, String bodyCookie, String firstName,
-                                          String lastName, String email) {
+    public PageOfCustomerInfo changingAPI(
+            String authCookieName,
+            String authCookieValue,
+            String headerCookie,
+            String bodyCookie,
+            String firstName,
+            String lastName,
+            String email) {
         given()
                 .filter(withCustomTemplates())
                 .cookie(authCookieName, authCookieValue)
