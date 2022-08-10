@@ -59,7 +59,7 @@ public class DemoWebShopUIandAPITests extends BaseTest {
     @Test
     @Tag("demoWebShop3")
     @Owner("Loarlam")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.NORMAL)
     @Feature("Участие Jenkins в процессе авторизации и смены данных пользователя на сайте (API + UI)")
     @Story("Jenkins тянет код автотеста процесса авторизации и смены данных пользователя из гита, " +
             "при отработке которого формируется отчёт в Allure Report (API + UI)")
@@ -67,6 +67,8 @@ public class DemoWebShopUIandAPITests extends BaseTest {
             "с выводом отчёта Allure, позволяет решить проблему привязки к локальной машине (API + UI)")
     @DisplayName("Авторизация и смена данных пользователя на сайте demowebshop.tricentis.com с последующей проверкой результата регистрации (API + UI)")
     void authAndChangedAPIandIUI() {
+        dataForTheTest = new DataForTheTest();
+
         String authHeaderCookieForChangeData = pageOfRegistrationForm.authingAPI(
                 credentialsConfig.userEmail(),
                 credentialsConfig.userPassword());
@@ -75,8 +77,8 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 .changingAPI(
                         "NOPCOMMERCE.AUTH",
                         authHeaderCookieForChangeData,
-                        "8_tlGoEKeotGgBsfIdEQ44GKctyj-TsqYXR7cJWEduH0gPyZmw-6rikdoqqjKBqv5dOZkIbmQXcF2q3d36hOalsB4eWcviAXMjwgk650LQc1",
-                        "HEWt1cfAzxK1Wm_sCF6Q6jfG1n6iqjpGSy4ZWLEv6HXYAGxmcAiI0LBx5HHyYL-rxkwVF3vz0iDVuPNF-DnnXFebMvdaLKZiRaBGsKff9yGiPsxz0SP7nsU1S1DBjsgX0",
+                        credentialsConfig.cookieForHeaderChangeData(),
+                        credentialsConfig.cookieForBodyChangeData(),
                         dataForTheTest.firstNameForEdit,
                         dataForTheTest.lastNameForEdit,
                         credentialsConfig.userEmail())
