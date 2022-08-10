@@ -76,7 +76,7 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                         "NOPCOMMERCE.AUTH",
                         authHeaderCookieForChangeData,
                         credentialsConfig.cookieForHeaderChangeData(),
-                        credentialsConfig.cookieForBodyChangeData(),
+                        "HEWt1cfAzxK1Wm_sCF6Q6jfG1n6iqjpGSy4ZWLEv6HXYAGxmcAiI0LBx5HHyYL-rxkwVF3vz0iDVuPNF-DnnXFebMvdaLKZiRaBGsKff9yGiPsxz0SP7nsU1S1DBjsgX0",
                         dataForTheTest.firstNameForEdit,
                         dataForTheTest.lastNameForEdit,
                         credentialsConfig.userEmail())
