@@ -62,6 +62,7 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 .clickingOnLogoutButton();
 
         String authHeaderCookieForChangeData = pageOfRegistrationForm.authingAPI(
+                credentialsConfig.cookieForHeaderRegistration(),
                 dataForTheTest.emailForRegistration,
                 dataForTheTest.passwordForRegistration);
 
