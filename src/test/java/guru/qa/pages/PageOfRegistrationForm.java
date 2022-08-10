@@ -4,11 +4,12 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Cookie;
 
-import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static guru.qa.helpers.CustomApiListener.withCustomTemplates;
+import static io.restassured.RestAssured.given;
 
 public class PageOfRegistrationForm {
     private SelenideElement name = $("#FirstName"),
@@ -85,5 +86,41 @@ public class PageOfRegistrationForm {
     public PageOfRegistrationForm clickingOnLogoutButton() {
         logoutButton.click();
         return this;
+    }
+
+    @Step("API для регистрации на сайте")
+    public String registeringAPI(String headerCookie, String bodyCookie, String gender, String firstName,
+                                 String lastName, String email, String password, String confirmPassword, String nameOfRegisterButton) {
+        return given()
+                .filter(withCustomTemplates())
+                .cookie("__RequestVerificationToken", headerCookie)
+                .formParam("__RequestVerificationToken", bodyCookie)
+                .formParam("Gender", gender)
+                .formParam("FirstName", firstName)
+                .formParam("LastName", lastName)
+                .formParam("Email", email)
+                .formParam("Password", password)
+                .formParam("ConfirmPassword", confirmPassword)
+                .formParam("register-button", nameOfRegisterButton)
+                .when()
+                .post("/register")
+                .then()
+                .statusCode(302)
+                .extract()
+                .cookie("NOPCOMMERCE.AUTH");
+    }
+
+    @Step("API для авторизации на сайте")
+    public String authingAPI(String email, String password) {
+        return given()
+                .filter(withCustomTemplates())
+                .formParam("Email", email)
+                .formParam("Password", password)
+                .when()
+                .post("/login")
+                .then()
+                .statusCode(302)
+                .extract()
+                .cookie("NOPCOMMERCE.AUTH");
     }
 }

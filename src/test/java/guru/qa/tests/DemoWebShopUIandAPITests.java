@@ -46,57 +46,34 @@ public class DemoWebShopUIandAPITests extends BaseTest {
     void registeringAndChangedAPIandUI() {
         dataForTheTest = new DataForTheTest();
 
-        String cookieValueForRegister = given()
-                .filter(withCustomTemplates())
-                .cookie("__RequestVerificationToken", credentialsConfig.cookieForHeaderRegistration())
-                .formParam("__RequestVerificationToken", credentialsConfig.cookieForBodyRegistration())
-                .formParam("Gender", dataForTheTest.genderForRegistration)
-                .formParam("FirstName", dataForTheTest.firstNameForRegistration)
-                .formParam("LastName", dataForTheTest.lastNameForRegistration)
-                .formParam("Email", dataForTheTest.emailForRegistration)
-                .formParam("Password", dataForTheTest.passwordForRegistration)
-                .formParam("ConfirmPassword", dataForTheTest.passwordForRegistration)
-                .formParam("register-button", dataForTheTest.buttonForRegistration)
-                .when()
-                .post("/register")
-                .then()
-                .statusCode(302)
-                .extract()
-                .cookie("NOPCOMMERCE.AUTH");
+        String cookieValueForRegister = pageOfRegistrationForm.registeringAPI(
+                credentialsConfig.cookieForHeaderRegistration(),
+                credentialsConfig.cookieForBodyRegistration(),
+                dataForTheTest.genderForRegistration,
+                dataForTheTest.firstNameForRegistration,
+                dataForTheTest.lastNameForRegistration,
+                dataForTheTest.emailForRegistration,
+                dataForTheTest.passwordForRegistration,
+                dataForTheTest.passwordForRegistration,
+                dataForTheTest.buttonForRegistration);
 
         pageOfRegistrationForm.openingMinimalContentInSite()
                 .openingWebsiteAfterRegisterPage("NOPCOMMERCE.AUTH", cookieValueForRegister)
                 .checkingResultOfRegistration(dataForTheTest.resultOfRegistration)
                 .clickingOnLogoutButton();
 
-        String cookieValueForChangeData = given()
-                .filter(withCustomTemplates())
-                .formParam("Email", dataForTheTest.emailForRegistration)
-                .formParam("Password", dataForTheTest.passwordForRegistration)
-                .when()
-                .post("/login")
-                .then()
-                .statusCode(302)
-                .extract().cookie("NOPCOMMERCE.AUTH");
+        WebDriverRunner.driver().clearCookies();
+        WebDriverRunner.clearBrowserCache();
 
-        given()
-                .filter(withCustomTemplates())
-                .cookie("__RequestVerificationToken", credentialsConfig.cookieForHeaderChangeData())
-                .cookie("NOPCOMMERCE.AUTH", cookieValueForChangeData)
-                .formParam("__RequestVerificationToken", credentialsConfig.cookieForBodyChangeData())
-                .formParam("Gender", dataForTheTest.genderForRegistration)
-                .formParam("FirstName", dataForTheTest.firstNameForRegistration)
-                .formParam("LastName", dataForTheTest.lastNameForRegistration)
-                .formParam("Email", dataForTheTest.emailForEdit)
-                .formParam("save-info-button", dataForTheTest.buttonForChangeData)
-                .log().all()
-                .when()
-                .post("/customer/info")
-                .then()
-                .log().all()
-                .statusCode(302);
+        String cookieValueForChangeData = pageOfRegistrationForm.authingAPI(
+                dataForTheTest.emailForRegistration,
+                dataForTheTest.passwordForRegistration);
 
-        pageOfCustomerInfo.openingMinimalContentInSite()
+        pageOfCustomerInfo.authingAPI(credentialsConfig.cookieForHeaderChangeData(), cookieValueForChangeData,
+                        credentialsConfig.cookieForBodyChangeData(), dataForTheTest.genderForRegistration,
+                        dataForTheTest.firstNameForRegistration, dataForTheTest.lastNameForRegistration,
+                        dataForTheTest.emailForEdit, dataForTheTest.buttonForChangeData)
+                .openingMinimalContentInSite()
                 .openingWebsiteAfterChangeData("NOPCOMMERCE.AUTH", cookieValueForChangeData)
                 .checkingResultOfChangeData(dataForTheTest.emailForEdit);
     }
