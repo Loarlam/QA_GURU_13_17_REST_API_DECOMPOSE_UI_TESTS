@@ -59,7 +59,7 @@ public class DemoWebShopUIandAPITests extends BaseTest {
     @Test
     @Tag("demoWebShop3")
     @Owner("Loarlam")
-    @Severity(SeverityLevel.NORMAL)
+    @Severity(SeverityLevel.MINOR)
     @Feature("Участие Jenkins в процессе авторизации и смены данных пользователя на сайте (API + UI)")
     @Story("Jenkins тянет код автотеста процесса авторизации и смены данных пользователя из гита, " +
             "при отработке которого формируется отчёт в Allure Report (API + UI)")
@@ -75,7 +75,7 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 .changingAPI(
                         "NOPCOMMERCE.AUTH",
                         authHeaderCookieForChangeData,
-                        credentialsConfig.cookieForHeaderChangeData(),
+                        "8_tlGoEKeotGgBsfIdEQ44GKctyj-TsqYXR7cJWEduH0gPyZmw-6rikdoqqjKBqv5dOZkIbmQXcF2q3d36hOalsB4eWcviAXMjwgk650LQc1",
                         "HEWt1cfAzxK1Wm_sCF6Q6jfG1n6iqjpGSy4ZWLEv6HXYAGxmcAiI0LBx5HHyYL-rxkwVF3vz0iDVuPNF-DnnXFebMvdaLKZiRaBGsKff9yGiPsxz0SP7nsU1S1DBjsgX0",
                         dataForTheTest.firstNameForEdit,
                         dataForTheTest.lastNameForEdit,
