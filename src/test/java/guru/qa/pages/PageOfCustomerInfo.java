@@ -15,9 +15,9 @@ public class PageOfCustomerInfo {
     private SelenideElement email = $("#Email");
 
     @Step("API для изменения данных пользователя")
-    public String changingAPI(String headerCookie, String authCookieName, String authCookieValue, String bodyCookie, String gender, String firstName,
-                                         String lastName, String email) {
-        return given()
+    public PageOfCustomerInfo changingAPI(String headerCookie, String authCookieName, String authCookieValue, String bodyCookie, String gender, String firstName,
+                                          String lastName, String email) {
+        given()
                 .filter(withCustomTemplates())
                 .cookie("__RequestVerificationToken", headerCookie)
                 .cookie(authCookieName, authCookieValue)
@@ -33,8 +33,8 @@ public class PageOfCustomerInfo {
                 .then()
                 .log().all()
                 .statusCode(302)
-                .extract()
-                .cookie("NOPCOMMERCE.AUTH");
+
+        return this;
     }
 
     @Step("Открываем минимальный элемент на странице для проверки работоспособности сайта")

@@ -62,13 +62,12 @@ public class DemoWebShopUIandAPITests extends BaseTest {
                 dataForTheTest.emailForRegistration,
                 dataForTheTest.passwordForRegistration);
 
-        String authCookieForChangeDataCheck = pageOfCustomerInfo.changingAPI(credentialsConfig.cookieForHeaderRegistration(), "NOPCOMMERCE.AUTH", authHeaderCookieForChangeData,
-                credentialsConfig.cookieForBodyChangeData(), dataForTheTest.genderForRegistration,
-                dataForTheTest.firstNameForEdit, dataForTheTest.lastNameForEdit,
-                dataForTheTest.emailForEdit);
-
-        pageOfCustomerInfo.openingMinimalContentInSite()
-                .openingWebsiteAfterChangeData("NOPCOMMERCE.AUTH", authCookieForChangeDataCheck)
+        pageOfCustomerInfo.changingAPI(credentialsConfig.cookieForHeaderRegistration(), "NOPCOMMERCE.AUTH", authHeaderCookieForChangeData,
+                        credentialsConfig.cookieForBodyChangeData(), dataForTheTest.genderForRegistration,
+                        dataForTheTest.firstNameForEdit, dataForTheTest.lastNameForEdit,
+                        dataForTheTest.emailForEdit)
+                .openingMinimalContentInSite()
+                .openingWebsiteAfterChangeData("NOPCOMMERCE.AUTH", authHeaderCookieForChangeData)
                 .checkingResultOfChangeData(dataForTheTest.emailForEdit);
     }
 }
