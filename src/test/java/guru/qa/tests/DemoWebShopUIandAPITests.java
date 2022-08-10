@@ -33,11 +33,11 @@ public class DemoWebShopUIandAPITests extends BaseTest {
     @Tag("demoWebShop2")
     @Owner("Loarlam")
     @Severity(SeverityLevel.NORMAL)
-    @Feature("Участие Jenkins в процессе регистрации, выхода из аккаунта, авторизации и смены данных пользователя на сайте (API)")
-    @Story("Jenkins тянет код автотеста процесса регистрации, выхода из аккаунта при отработке которого формируется отчёт в Allure Report")
-    @Description("Методика запуска процесса регистрации, выхода из аккаунта посредством подтягивания кода из github в Jenkins, " +
-            "с выводом отчёта Allure, позволяет решить проблему привязки к локальной машине (API)")
-    @DisplayName("Регистрация, выход из аккаунта на сайте demowebshop.tricentis.com с последующей проверкой результата регистрации (API)")
+    @Feature("Участие Jenkins в процессе регистрации на сайте (API + UI)")
+    @Story("Jenkins тянет код автотеста процесса регистрации, при отработке которого формируется отчёт в Allure Report (API + UI)")
+    @Description("Методика запуска процесса регистрации посредством подтягивания кода из github в Jenkins, " +
+            "с выводом отчёта Allure, позволяет решить проблему привязки к локальной машине (API + UI)")
+    @DisplayName("Регистрация на сайте demowebshop.tricentis.com с последующей проверкой результата регистрации (API + UI)")
     void registeringAndChangedAPIandUI() {
         dataForTheTest = new DataForTheTest();
 
@@ -53,20 +53,19 @@ public class DemoWebShopUIandAPITests extends BaseTest {
 
         pageOfRegistrationForm.openingMinimalContentInSite()
                 .openingWebsiteAfterRegisterPage("NOPCOMMERCE.AUTH", authHeaderCookieForRegister)
-                .checkingResultOfRegistration(dataForTheTest.resultOfRegistration)
-                .logoutingAPI(credentialsConfig.cookieForHeaderRegistration(), "NOPCOMMERCE.AUTH", authHeaderCookieForRegister);
+                .checkingResultOfRegistration(dataForTheTest.resultOfRegistration);
     }
 
     @Test
     @Tag("demoWebShop3")
     @Owner("Loarlam")
     @Severity(SeverityLevel.NORMAL)
-    @Feature("Участие Jenkins в процессе авторизации и смены данных пользователя на сайте (API)")
+    @Feature("Участие Jenkins в процессе авторизации и смены данных пользователя на сайте (API + UI)")
     @Story("Jenkins тянет код автотеста процесса авторизации и смены данных пользователя из гита, " +
-            "при отработке которого формируется отчёт в Allure Report")
+            "при отработке которого формируется отчёт в Allure Report (API + UI)")
     @Description("Методика запуска процесса авторизации и смены данных пользователя посредством подтягивания кода из github в Jenkins, " +
-            "с выводом отчёта Allure, позволяет решить проблему привязки к локальной машине (API)")
-    @DisplayName("Авторизация и смена данных пользователя на сайте demowebshop.tricentis.com с последующей проверкой результата регистрации (API)")
+            "с выводом отчёта Allure, позволяет решить проблему привязки к локальной машине (API + UI)")
+    @DisplayName("Авторизация и смена данных пользователя на сайте demowebshop.tricentis.com с последующей проверкой результата регистрации (API + UI)")
     void authAndAchangedAPIandIUI() {
         String authHeaderCookieForChangeData = pageOfRegistrationForm.authingAPI(
                 credentialsConfig.userEmail(),
